@@ -1,0 +1,58 @@
+{
+    "posts":[
+        {
+            "id": 1,
+            "createdAt": "1 min ago",
+            "autor": "@raphael",
+            "text": "Should he write it down? That was the question running through his mind. He couldn't believe what had just happened and he knew nobody else would believe him as well.",
+            "comments": "3",
+            "image": "https://picsum.photos/300/250",
+            "likes": 20
+        },
+        {
+            "id": 2,
+            "createdAt": "2 min ago",
+            "autor": "@leonardo",
+            "text": "Even if he documented what had happened by writing it down, he still didn't believe anyone would still believe it. So the question remained. Was it be worth it.",
+            "comments": "4",
+            "image": "https://picsum.photos/302/250",
+            "likes": 10
+        },
+        {
+            "id": 3,
+            "createdAt": "7 min ago",
+            "autor": "@michelangelo",
+            "text": "It was just a burger. Why couldn't she understand that? She knew he'd completely changed his life around her eating habits, so why couldn't she give him a break this one time? Yes, he had promised her and yes, he had broken that promise, but still in his mind, all it had been was just a burger.",
+            "comments": "10",
+            "image": "https://picsum.photos/320/250",
+            "likes": 30
+        },
+        {
+            "id": 4,
+            "createdAt": "9 min ago",
+            "autor": "@donatello",
+            "text": "She wasn't even supposed to have found out. Yes, he had promised her and yes, he had broken that promise, but still in his mind, all it had been was just a burger.",
+            "comments": "0",
+            "image": "https://picsum.photos/310/250",
+            "likes": 40
+        },
+        {
+            "id": 5,
+            "createdAt": "20 min ago",
+            "autor": "@april",
+            "text": "She considered the birds to be her friends. She'd put out food for them each morning and then she'd watch as they came to the feeders to gorge themselves for the day",
+            "comments": "90",
+            "image": "https://picsum.photos/305/250",
+            "likes": 50
+        },
+        {
+            "id": 6,
+            "createdAt": "20 min ago",
+            "autor": "@lily",
+            "text": "Ladies others the six desire age. Bred am soon park past read by lain. As excuse eldest no moment. An delight beloved up garrets am cottage private.",
+            "comments": "9",
+            "image": "https://picsum.photos/309/250",
+            "likes": 1
+        }
+    ]
+}
