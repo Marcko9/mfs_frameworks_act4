@@ -2,13 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { Post } from './Post'
 import { getPosts } from '../services/posts-service'
 
-export const PostList = ({searchValue}) => {
+export const PostList = ({searchValue, currentUser}) => {
 
     const [posts, setPosts] = useState(null);
     useEffect(() => {
         //getPosts().then((posts) => setPosts(posts));
         getPosts().then((posts) => setPosts(posts));
     }, [])
+
+
+    if(!currentUser){
+        console.log({currentUser});
+    }
 
     console.log({posts});
     if(!posts){
@@ -29,7 +34,7 @@ export const PostList = ({searchValue}) => {
                 <Post 
                 key={post.id} 
                 createdAt={ (new Date(post.createdAt).toDateString())} 
-                author={post.author.name} 
+                author={post.author.username} 
                 text={post.text} 
                 comments={Object.keys(post.comments).length} 
                 //comments={0} 

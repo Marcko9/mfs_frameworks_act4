@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Login } from './Login';
 
-export const Profile = ({avatar, username, bio}) => {
+export const Profile = ({avatar, username, bio, onLogout, currentUser}) => {
+
+  console.log({currentUser}); 
+  if(!currentUser)
+    // return (<div>Usuario no logeado</div>);
+    return (<Login/>);
+
+else
   return (
     
     <div className="container mt-5">    
@@ -18,6 +26,7 @@ export const Profile = ({avatar, username, bio}) => {
                         </div>
                     </div>
                 </div>
+                <button type="submit" className="btn btn-large btn-danger mt-3" onClick={onLogout}>Logout</button>
             </div>
         </div>
     </div>

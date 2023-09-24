@@ -5,6 +5,7 @@ import { PostList } from './components/PostList'
 import { Profile } from './components/Profile'
 import { useEffect, useState } from 'react'
 import { Login } from './components/Login'
+import { getProfile } from './services/profile-service'
 
 function App() {
 
@@ -12,12 +13,18 @@ function App() {
   const [showWebDetail, setShowWebDetail] = useState(true);
   const [searchValue, setSearchValue] = useState(null);
   const [loginOk, setLoginOk] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [userId, setUserId] = useState(null);
   
 
-  const onProfileClick = () => {
+  const onProfileClick = async() => {
         console.log('onProfileClick');
         console.log({showWebDetail});
         console.log({showProfile});
+        setUserId("6136944fcd79ba24707e2f82");
+        console.log({userId});
+        await getProfile().then((data) => setCurrentUser(data));
+        console.log({currentUser});
         if(!showProfile){
             setShowWebDetail(false);
             setShowProfile(true);
@@ -34,19 +41,33 @@ function App() {
       }
   }
 
-  const onLoginComplete = () => {
+  const onLoginComplete = async () => {
     setLoginOk(true);
+    await getProfile().then((data) => setCurrentUser(data));
+    console.log('Login completo');
+    console.log({currentUser});
+
   }
   
+  const onLogout = () => {
+    if(localStorage.getItem('token')){
+      console.log('Usuario logeado');
+      localStorage.removeItem('token');
+      setLoginOk(false);
+    }
+  }
 
   useEffect(() => {
       if(localStorage.getItem('token')){
         console.log('Usuario logeado');
         setLoginOk(true);
-      }
-     
-  }, [])
+        
 
+
+      }
+      
+    }, [])
+    
   //console.log({loginOk});
   if(!loginOk){
     return(
@@ -63,9 +84,15 @@ function App() {
         onLogoClick={onLogoClick} />
       {showProfile &&
       <Profile 
-        avatar={"https://picsum.photos/id/237/200/200"}
-        username={"@dobby"}
-        bio={"Enim ullamco esse est nostrud adipisicing qui deserunt esse esse ea eiusmod.Velit mollit ipsum nulla cupidatat duis qui aliquip dolore dolor do aliqua nulla."}
+        avatar={currentUser.avatar}
+        username={currentUser.username}
+        bio={currentUser.bio}
+        onLogout={onLogout}
+        currentUser={currentUser}
+        // avatar={"https://picsum.photos/id/237/200/200"}
+        // username={"@dobby"}
+        // bio={"Enim ullamco esse est nostrud adipisicing qui deserunt esse esse ea eiusmod.Velit mollit ipsum nulla cupidatat duis qui aliquip dolore dolor do aliqua nulla."}
+        // onLogout={onLogout}
       />}
       
       {
@@ -77,7 +104,7 @@ function App() {
       }
       {
         !showProfile &&
-        <PostList searchValue={searchValue} />
+        <PostList searchValue={searchValue} currentUser={currentUser}/>
       }
       
     </>

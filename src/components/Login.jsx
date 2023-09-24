@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import { useUserContext } from "../contexts/user-context";
 
-export const Login = ({loginOk, onLoginComplete}) => {
+export const Login = ({onLoginComplete}) => {
 
     const [error, setError] = useState(null);
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
+    
+    //const value = useUserContext();
+    
 
    
     const urlAPI = 'https://three-points.herokuapp.com/api/login';
@@ -45,6 +49,10 @@ export const Login = ({loginOk, onLoginComplete}) => {
                 onLoginComplete(true);
             }
             else{
+                if(response.status === 401){
+                    localStorage.removeItem('token');
+                    onLoginComplete(false);
+                }
                 setError(true);
             }
         }
@@ -69,7 +77,7 @@ export const Login = ({loginOk, onLoginComplete}) => {
         
         {
             !error && 
-            <div className="alert alert-primary">Login</div>
+            <div className="alert alert-primary text-center">Bienvenido</div>
         }
 
         {/* <form onSubmit={ProceedLogin}> */}
@@ -82,7 +90,7 @@ export const Login = ({loginOk, onLoginComplete}) => {
                 <input type="password" className="form-control" id="inputPassword" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
             </div>
 
-            <button type="submit" className="btn btn-large btn-primary mt-3" onClick={login}>Submit</button>
+            <button type="submit" className="btn btn-large btn-primary mt-3" onClick={login}>Login</button>
         {/* </form> */}
     </div>
     
